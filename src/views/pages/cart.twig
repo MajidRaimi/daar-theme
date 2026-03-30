@@ -1,0 +1,100 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ trans('pages.cart.title') }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl md:text-3xl font-bold text-dar-dark mb-8">{{ trans('pages.cart.title') }}</h1>
+
+    {% hook 'cart:items.start' %}
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {# Cart items #}
+      <div class="lg:col-span-2">
+        {% for item in cart.items %}
+          <div class="dar-cart-item flex gap-4 p-4 bg-white rounded-dar border border-dar-cream-300 mb-4">
+            <a href="{{ item.url }}" class="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-dar-cream-50">
+              <img src="{{ item.product_image }}" alt="{{ item.product_name }}" class="w-full h-full object-cover">
+            </a>
+            <div class="flex-1 min-w-0">
+              <a href="{{ item.url }}" class="font-medium text-dar-dark hover:text-dar-olive transition-colors block truncate">{{ item.product_name }}</a>
+              {% if item.options %}
+                <div class="text-xs text-dar-dark-400 mt-1">
+                  {% for option in item.options %}
+                    <span>{{ option.name }}: {{ option.value }}</span>{% if not loop.last %}, {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              <div class="flex items-center justify-between mt-3">
+                <salla-quantity-input cart-item-id="{{ item.id }}" max="{{ item.max_quantity }}" value="{{ item.quantity }}" class="dar-qty-sm"></salla-quantity-input>
+                <span class="font-bold text-dar-dark">{{ item.total | money }}</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        {% if cart.free_shipping_bar and not cart.free_shipping_bar.has_free_shipping %}
+          <div class="bg-dar-olive-50 border border-dar-olive-200 rounded-dar p-4 text-sm text-dar-olive-dark">
+            {{ trans('pages.cart.free_shipping_alert', ['amount' => cart.free_shipping_bar.remaining | money]) }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% hook 'cart:items.end' %}
+
+      {# Cart summary #}
+      {% hook 'cart:summary.start' %}
+
+      <div class="lg:col-span-1">
+        <salla-cart-summary class="dar-cart-summary">
+          <div class="bg-white rounded-dar border border-dar-cream-300 p-6 sticky top-24">
+            <h3 class="font-bold text-dar-dark text-lg mb-4">{{ trans('pages.cart.summary') }}</h3>
+            <div class="space-y-3 text-sm pb-4 border-b border-dar-cream-300 mb-4">
+              <div class="flex justify-between">
+                <span class="text-dar-dark-400">{{ trans('pages.cart.subtotal') }}</span>
+                <span class="font-medium text-dar-dark">{{ cart.sub_total | money }}</span>
+              </div>
+              {% if cart.real_shipping_cost %}
+                <div class="flex justify-between">
+                  <span class="text-dar-dark-400">{{ trans('pages.cart.shipping') }}</span>
+                  <span class="font-medium text-dar-dark">{{ cart.real_shipping_cost | money }}</span>
+                </div>
+              {% endif %}
+              {% if cart.real_discount %}
+                <div class="flex justify-between text-dar-olive">
+                  <span>{{ trans('pages.cart.discount') }}</span>
+                  <span class="font-medium">-{{ cart.real_discount | money }}</span>
+                </div>
+              {% endif %}
+            </div>
+
+            {# Coupon #}
+            {% if store.settings.cart.apply_coupon_enabled %}
+              <div class="mb-4">
+                <div class="flex gap-2">
+                  <input type="text" id="coupon-input" placeholder="{{ trans('pages.cart.coupon_placeholder') }}" class="flex-1 border border-dar-cream-300 rounded-dar px-3 py-2 text-sm focus:ring-2 focus:ring-dar-olive focus:border-dar-olive">
+                  <button onclick="salla.cart.applyCoupon(document.getElementById('coupon-input').value)" class="bg-dar-olive text-white px-4 py-2 rounded-dar text-sm font-medium hover:bg-dar-olive-dark transition-colors">
+                    {{ trans('pages.cart.apply') }}
+                  </button>
+                </div>
+              </div>
+            {% endif %}
+
+            <button onclick="salla.cart.submit()" class="w-full bg-dar-brown text-white py-3 rounded-dar font-medium hover:bg-dar-brown-dark transition-colors flex items-center justify-center gap-2">
+              <i class="sicon-shopping-bag"></i>
+              {{ trans('pages.cart.complete_order') }}
+            </button>
+          </div>
+        </salla-cart-summary>
+      </div>
+
+      {% hook 'cart:summary.end' %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ 'checkout.js' | asset('dist/checkout.js') }}" defer></script>
+{% endblock %}

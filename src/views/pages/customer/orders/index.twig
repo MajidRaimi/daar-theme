@@ -1,0 +1,28 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ trans('pages.orders.title') }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-dar-dark mb-8">{{ trans('pages.orders.title') }}</h1>
+
+    <div class="space-y-4">
+      {% for order in orders %}
+        <a href="{{ order.url }}" class="block bg-white rounded-dar border border-dar-cream-300 p-4 hover:border-dar-olive transition-colors">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="font-bold text-dar-dark">#{{ order.id }}</span>
+              <span class="text-sm text-dar-dark-400 mx-2">{{ order.created_at | date("j F Y") }}</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-medium text-dar-dark">{{ order.total | money }}</span>
+              <span class="text-xs px-3 py-1 rounded-full bg-dar-cream-100 text-dar-dark-400">{{ order.status }}</span>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

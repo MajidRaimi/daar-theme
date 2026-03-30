@@ -1,0 +1,57 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ trans('pages.thank_you.title') }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto px-4 py-16">
+    <div class="max-w-2xl mx-auto text-center">
+      {# Success icon #}
+      <div class="w-20 h-20 bg-dar-olive rounded-full flex items-center justify-center mx-auto mb-6">
+        <i class="sicon-check text-3xl text-white"></i>
+      </div>
+
+      <h1 class="text-3xl font-bold text-dar-dark mb-4">{{ trans('pages.thank_you.title') }}</h1>
+      <p class="text-dar-dark-400 mb-2">{{ trans('pages.thank_you.order_number') }}: <strong class="text-dar-dark">#{{ order.id }}</strong></p>
+
+      {% if order.email_sent %}
+        <p class="text-sm text-dar-dark-400 mb-8">{{ trans('pages.thank_you.email_sent', ['email' => order.customer.email]) }}</p>
+      {% endif %}
+
+      {% hook 'thank-you:items.start' %}
+
+      {# Order items #}
+      <div class="bg-white rounded-dar border border-dar-cream-300 p-6 text-start mb-8">
+        <h3 class="font-bold text-dar-dark mb-4">{{ trans('pages.thank_you.order_details') }}</h3>
+        <div class="divide-y divide-dar-cream-300">
+          {% for item in order.items %}
+            <div class="flex items-center gap-4 py-3">
+              <div class="w-12 h-12 rounded-lg bg-dar-cream-50 overflow-hidden flex-shrink-0">
+                <img src="{{ item.image }}" alt="{{ item.name }}" class="w-full h-full object-cover">
+              </div>
+              <div class="flex-1">
+                <p class="font-medium text-dar-dark text-sm">{{ item.name }}</p>
+                <p class="text-xs text-dar-dark-400">{{ trans('pages.thank_you.qty') }}: {{ item.quantity }}</p>
+              </div>
+              <span class="font-medium text-dar-dark text-sm">{{ item.total | money }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% hook 'thank-you:items.end' %}
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="{{ page('orders') }}" class="inline-flex items-center gap-2 bg-dar-olive text-white px-6 py-3 rounded-dar font-medium hover:bg-dar-olive-dark transition-colors">
+          {{ trans('pages.thank_you.track_order') }}
+        </a>
+        <a href="{{ store.url }}" class="inline-flex items-center gap-2 border border-dar-cream-300 text-dar-dark px-6 py-3 rounded-dar font-medium hover:bg-dar-cream-100 transition-colors">
+          {{ trans('pages.thank_you.continue_shopping') }}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ 'checkout.js' | asset('dist/checkout.js') }}" defer></script>
+{% endblock %}

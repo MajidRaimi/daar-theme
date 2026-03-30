@@ -1,0 +1,126 @@
+{
+  "name": "Daar Theme",
+  "description": {
+    "ar": "ثيم دار - متجر مستلزمات المنزل",
+    "en": "Daar Theme - Home Goods Store"
+  },
+  "version": "1.0.0",
+  "author": "Daar Store",
+  "features": [
+    "component-photos-slider",
+    "component-featured-products",
+    "component-latest-products",
+    "component-products-slider",
+    "component-store-features",
+    "component-fixed-products",
+    "component-fixed-banner",
+    "filters"
+  ],
+  "components": [
+    {
+      "name": "dar-hero-banner",
+      "title": {
+        "ar": "بانر دار الرئيسي",
+        "en": "Daar Hero Banner"
+      },
+      "icon": "sicon-slider",
+      "path": "home.hero-banner",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": { "ar": "العنوان", "en": "Title" },
+          "required": true
+        },
+        {
+          "id": "subtitle",
+          "type": "string",
+          "label": { "ar": "العنوان الفرعي", "en": "Subtitle" }
+        },
+        {
+          "id": "background_image",
+          "type": "collection",
+          "format": "image",
+          "label": { "ar": "صورة الخلفية", "en": "Background Image" },
+          "minLength": 1,
+          "maxLength": 5
+        },
+        {
+          "id": "show_cta",
+          "type": "boolean",
+          "format": "switch",
+          "label": { "ar": "إظهار زر الإجراء", "en": "Show CTA Button" }
+        }
+      ]
+    },
+    {
+      "name": "dar-categories",
+      "title": {
+        "ar": "أقسام دار",
+        "en": "Daar Categories"
+      },
+      "icon": "sicon-grid",
+      "path": "home.categories",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": { "ar": "العنوان", "en": "Title" },
+          "required": true
+        },
+        {
+          "id": "columns",
+          "type": "numeric",
+          "label": { "ar": "عدد الأعمدة", "en": "Columns" }
+        }
+      ]
+    },
+    {
+      "name": "dar-about-section",
+      "title": {
+        "ar": "عن دار",
+        "en": "About Daar"
+      },
+      "icon": "sicon-info",
+      "path": "home.about-section",
+      "fields": [
+        {
+          "id": "title",
+          "type": "string",
+          "label": { "ar": "العنوان", "en": "Title" },
+          "required": true
+        },
+        {
+          "id": "description",
+          "type": "string",
+          "label": { "ar": "الوصف", "en": "Description" }
+        },
+        {
+          "id": "image",
+          "type": "collection",
+          "format": "image",
+          "label": { "ar": "الصورة", "en": "Image" },
+          "minLength": 1,
+          "maxLength": 1
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "id": "show_geometric_pattern",
+      "type": "boolean",
+      "format": "switch",
+      "label": { "ar": "إظهار النمط الهندسي", "en": "Show Geometric Pattern" }
+    },
+    {
+      "id": "header_style",
+      "type": "list",
+      "label": { "ar": "نمط الهيدر", "en": "Header Style" },
+      "options": [
+        { "value": "light", "label": { "ar": "فاتح", "en": "Light" } },
+        { "value": "dark", "label": { "ar": "داكن", "en": "Dark" } }
+      ]
+    }
+  ]
+}

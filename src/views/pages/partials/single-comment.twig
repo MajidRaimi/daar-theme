@@ -1,0 +1,17 @@
+<div class="dar-comment bg-white rounded-dar border border-dar-cream-300 p-4 mb-3">
+  <div class="flex items-start gap-3">
+    <div class="w-10 h-10 rounded-full bg-dar-olive-50 flex items-center justify-center flex-shrink-0">
+      <i class="sicon-user text-dar-olive"></i>
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="font-medium text-dar-dark text-sm">{{ comment.author }}</span>
+        <span class="text-xs text-dar-dark-400">{{ comment.created_at | time_ago }}</span>
+      </div>
+      {% if comment.rating %}
+        <salla-rating-stars value="{{ comment.rating }}" size="sm" class="mb-1"></salla-rating-stars>
+      {% endif %}
+      <p class="text-sm text-dar-dark-400">{{ comment.content }}</p>
+    </div>
+  </div>
+</div>

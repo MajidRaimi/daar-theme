@@ -1,0 +1,105 @@
+{
+  "blocks": {
+    "header": {
+      "cart": "السلة",
+      "login": "تسجيل الدخول",
+      "wishlist": "المفضلة",
+      "search": "البحث في المتجر..."
+    },
+    "footer": {
+      "quick_links": "روابط سريعة",
+      "contacts": "تواصل معنا",
+      "payment_methods": "طرق الدفع",
+      "all_rights": "جميع الحقوق محفوظة",
+      "powered_by": "مدعوم بواسطة"
+    },
+    "home": {
+      "welcome": "مرحباً بك في دار",
+      "shop_now": "تسوق الآن",
+      "categories": "الأقسام",
+      "featured_products": "منتجات مميزة",
+      "latest_products": "أحدث المنتجات",
+      "view_all": "عرض الكل",
+      "about_title": "عن دار",
+      "store_features": "مميزات المتجر"
+    },
+    "product": {
+      "similar_products": "منتجات مشابهة"
+    },
+    "comments": {
+      "title": "التقييمات والمراجعات",
+      "comment": "تقييم|تقييمات"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "الرئيسية"
+    },
+    "products": {
+      "title": "المنتجات",
+      "load_more": "عرض المزيد"
+    },
+    "product": {
+      "add_to_cart": "أضف للسلة",
+      "add_to_wishlist": "أضف للمفضلة",
+      "out_of_stock": "نفذت الكمية",
+      "quantity": "الكمية"
+    },
+    "cart": {
+      "title": "سلة التسوق",
+      "summary": "ملخص الطلب",
+      "subtotal": "المجموع الفرعي",
+      "shipping": "الشحن",
+      "discount": "الخصم",
+      "total": "الإجمالي",
+      "complete_order": "إتمام الطلب",
+      "coupon_placeholder": "أدخل كود الخصم",
+      "apply": "تطبيق",
+      "free_shipping_alert": "أضف منتجات بقيمة {amount} لتحصل على شحن مجاني",
+      "empty": "سلة التسوق فارغة"
+    },
+    "thank_you": {
+      "title": "شكراً لك!",
+      "order_number": "رقم الطلب",
+      "email_sent": "تم إرسال تفاصيل الطلب إلى {email}",
+      "order_details": "تفاصيل الطلب",
+      "qty": "الكمية",
+      "track_order": "تتبع الطلب",
+      "continue_shopping": "مواصلة التسوق"
+    },
+    "profile": {
+      "title": "حسابي"
+    },
+    "wishlist": {
+      "title": "المفضلة"
+    },
+    "notifications": {
+      "title": "الإشعارات"
+    },
+    "orders": {
+      "title": "طلباتي"
+    },
+    "order": {
+      "title": "تفاصيل الطلب",
+      "qty": "الكمية",
+      "total": "الإجمالي"
+    },
+    "blog": {
+      "title": "المدونة"
+    },
+    "brands": {
+      "title": "العلامات التجارية"
+    },
+    "loyalty": {
+      "title": "برنامج الولاء"
+    },
+    "gift": {
+      "sent_you_a_gift": "{name} أرسل لك هدية"
+    }
+  },
+  "common": {
+    "titles": {
+      "orders": "الطلبات"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ post.title }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <article class="max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold text-dar-dark mb-4">{{ post.title }}</h1>
+      <time class="text-sm text-dar-dark-400 block mb-8">{{ post.created_at | date("j F Y") }}</time>
+
+      {% if post.image %}
+        <div class="rounded-dar overflow-hidden mb-8">
+          <img src="{{ post.image }}" alt="{{ post.title }}" class="w-full h-auto">
+        </div>
+      {% endif %}
+
+      <div class="prose prose-lg max-w-none text-dar-dark-400">
+        {{ post.content | raw }}
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-dar-cream-300">
+        <salla-social-share></salla-social-share>
+      </div>
+    </article>
+
+    {% component comments %}
+  </div>
+{% endblock %}

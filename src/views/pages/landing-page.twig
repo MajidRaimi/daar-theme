@@ -1,0 +1,9 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ page.title }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  <div class="dar-landing">
+    {{ page.content | raw }}
+  </div>
+{% endblock %}

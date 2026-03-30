@@ -1,0 +1,14 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ trans('pages.profile.title') }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-dar-dark mb-8">{{ trans('pages.profile.title') }}</h1>
+    <div class="max-w-2xl bg-white rounded-dar border border-dar-cream-300 p-6">
+      <salla-user-profile></salla-user-profile>
+    </div>
+  </div>
+{% endblock %}

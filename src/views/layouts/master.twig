@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="{{ store.locale }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+  {% hook 'head:start' %}
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{{ store.name }}{% endblock %}</title>
+
+  <link rel="stylesheet" href="{{ 'fonts' | cdn }}">
+  <link rel="stylesheet" href="{{ 'saicon' | cdn }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+
+  <style>
+    :root {
+      --color-primary: {{ theme.color.primary | default('#404928') }};
+      --color-primary-dark: {{ theme.color.darker(0.15) | default('#2e341c') }};
+      --color-primary-light: {{ theme.color.lighter(0.15) | default('#5a6638') }};
+      --color-primary-reverse: {{ theme.color.reverse_text | default('#ffffff') }};
+      --font-main: {{ theme.font.name | default('IBM Plex Sans Arabic') }};
+
+      --dar-olive: #404928;
+      --dar-brown: #562726;
+      --dar-dark: #171310;
+      --dar-cream: #D3D2CF;
+      --dar-cream-light: #E8E7E5;
+      --dar-cream-bg: #F7F7F6;
+    }
+
+    body {
+      font-family: var(--font-main), 'IBM Plex Sans Arabic', sans-serif;
+    }
+  </style>
+
+  {% hook 'head' %}
+  {% hook 'head:end' %}
+</head>
+<body class="{% hook 'body:classes' %} font-dar antialiased bg-dar-cream-50 text-dar-dark">
+  {% hook 'body:start' %}
+
+  {% component 'header.header' %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% component 'footer.footer' %}
+
+  <salla-login-modal></salla-login-modal>
+
+  {% block scripts %}{% endblock %}
+
+  {% hook 'body:end' %}
+</body>
+</html>

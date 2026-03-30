@@ -1,0 +1,38 @@
+{
+  "name": "daar-theme",
+  "version": "1.0.0",
+  "description": "Daar Store - Salla Theme",
+  "main": "src/assets/js/app.js",
+  "scripts": {
+    "production": "webpack --mode production",
+    "development": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.26.0",
+    "animejs": "^3.2.2",
+    "lite-youtube-embed": "^0.3.3",
+    "sweetalert2": "^11.14.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@salla.sa/twilight": "^2.14.374",
+    "@salla.sa/twilight-components": "*",
+    "@salla.sa/twilight-tailwind-theme": "*",
+    "autoprefixer": "^10.4.20",
+    "babel-loader": "^9.2.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "postcss": "^8.4.49",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.82.0",
+    "sass-loader": "^16.0.3",
+    "tailwindcss": "^3.4.16",
+    "webpack": "^5.103.0",
+    "webpack-cli": "^6.0.1"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "blocks": {
+    "header": {
+      "cart": "Cart",
+      "login": "Login",
+      "wishlist": "Wishlist",
+      "search": "Search the store..."
+    },
+    "footer": {
+      "quick_links": "Quick Links",
+      "contacts": "Contact Us",
+      "payment_methods": "Payment Methods",
+      "all_rights": "All rights reserved",
+      "powered_by": "Powered by"
+    },
+    "home": {
+      "welcome": "Welcome to Daar",
+      "shop_now": "Shop Now",
+      "categories": "Categories",
+      "featured_products": "Featured Products",
+      "latest_products": "Latest Products",
+      "view_all": "View All",
+      "about_title": "About Daar",
+      "store_features": "Store Features"
+    },
+    "product": {
+      "similar_products": "Similar Products"
+    },
+    "comments": {
+      "title": "Ratings & Reviews",
+      "comment": "review|reviews"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Home"
+    },
+    "products": {
+      "title": "Products",
+      "load_more": "Load More"
+    },
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "add_to_wishlist": "Add to Wishlist",
+      "out_of_stock": "Out of Stock",
+      "quantity": "Quantity"
+    },
+    "cart": {
+      "title": "Shopping Cart",
+      "summary": "Order Summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "discount": "Discount",
+      "total": "Total",
+      "complete_order": "Complete Order",
+      "coupon_placeholder": "Enter coupon code",
+      "apply": "Apply",
+      "free_shipping_alert": "Add products worth {amount} for free shipping",
+      "empty": "Your cart is empty"
+    },
+    "thank_you": {
+      "title": "Thank You!",
+      "order_number": "Order Number",
+      "email_sent": "Order details have been sent to {email}",
+      "order_details": "Order Details",
+      "qty": "Qty",
+      "track_order": "Track Order",
+      "continue_shopping": "Continue Shopping"
+    },
+    "profile": {
+      "title": "My Account"
+    },
+    "wishlist": {
+      "title": "Wishlist"
+    },
+    "notifications": {
+      "title": "Notifications"
+    },
+    "orders": {
+      "title": "My Orders"
+    },
+    "order": {
+      "title": "Order Details",
+      "qty": "Qty",
+      "total": "Total"
+    },
+    "blog": {
+      "title": "Blog"
+    },
+    "brands": {
+      "title": "Brands"
+    },
+    "loyalty": {
+      "title": "Loyalty Program"
+    },
+    "gift": {
+      "sent_you_a_gift": "{name} sent you a gift"
+    }
+  },
+  "common": {
+    "titles": {
+      "orders": "Orders"
+    }
+  }
+}

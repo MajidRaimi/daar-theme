@@ -1,0 +1,35 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ trans('pages.order.title') }} #{{ order.id }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-dar-dark mb-8">{{ trans('pages.order.title') }} #{{ order.id }}</h1>
+
+    <div class="bg-white rounded-dar border border-dar-cream-300 p-6">
+      <div class="divide-y divide-dar-cream-300">
+        {% for item in order.items %}
+          <div class="flex items-center gap-4 py-4">
+            <div class="w-16 h-16 rounded-lg bg-dar-cream-50 overflow-hidden flex-shrink-0">
+              <img src="{{ item.image }}" alt="{{ item.name }}" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1">
+              <p class="font-medium text-dar-dark">{{ item.name }}</p>
+              <p class="text-sm text-dar-dark-400">{{ trans('pages.order.qty') }}: {{ item.quantity }}</p>
+            </div>
+            <span class="font-medium text-dar-dark">{{ item.total | money }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-dar-cream-300">
+        <div class="flex justify-between font-bold text-dar-dark text-lg">
+          <span>{{ trans('pages.order.total') }}</span>
+          <span>{{ order.total | money }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

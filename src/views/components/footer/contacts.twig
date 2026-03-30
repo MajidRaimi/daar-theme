@@ -1,0 +1,17 @@
+<div class="dar-contacts">
+  <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{{ trans('blocks.footer.contacts') }}</h4>
+  <ul class="space-y-3 text-sm text-dar-cream-400">
+    {% if store.contacts.mobile %}
+      <li class="flex items-center gap-2">
+        <i class="sicon-phone text-dar-olive"></i>
+        <a href="tel:{{ store.contacts.mobile }}" class="hover:text-white transition-colors">{{ store.contacts.mobile }}</a>
+      </li>
+    {% endif %}
+    {% if store.contacts.email %}
+      <li class="flex items-center gap-2">
+        <i class="sicon-mail text-dar-olive"></i>
+        <a href="mailto:{{ store.contacts.email }}" class="hover:text-white transition-colors">{{ store.contacts.email }}</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

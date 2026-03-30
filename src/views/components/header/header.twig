@@ -1,0 +1,68 @@
+<header class="dar-header sticky top-0 z-50 bg-dar-cream-50 border-b border-dar-cream-300 transition-all duration-300">
+  {# Top bar with contact info #}
+  <div class="bg-dar-olive text-white text-xs py-1.5">
+    <div class="container mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        {% if store.contacts.mobile %}
+          <a href="tel:{{ store.contacts.mobile }}" class="flex items-center gap-1 hover:text-dar-cream transition-colors">
+            <i class="sicon-phone text-[10px]"></i>
+            <span>{{ store.contacts.mobile }}</span>
+          </a>
+        {% endif %}
+      </div>
+      <div class="flex items-center gap-3">
+        <salla-localization-modal></salla-localization-modal>
+      </div>
+    </div>
+  </div>
+
+  {# Main header #}
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+      {# Logo #}
+      <a href="{{ store.url }}" class="dar-logo flex-shrink-0">
+        {% if store.logo %}
+          <img src="{{ store.logo }}" alt="{{ store.name }}" class="h-10 md:h-12 w-auto">
+        {% else %}
+          <span class="text-2xl font-bold text-dar-dark">{{ store.name }}</span>
+        {% endif %}
+      </a>
+
+      {# Search bar #}
+      <div class="hidden md:flex flex-1 max-w-lg mx-8">
+        <salla-search class="w-full"></salla-search>
+      </div>
+
+      {# Actions #}
+      <div class="flex items-center gap-3">
+        {% component 'header.user-menu' %}
+
+        <a href="{{ page('wishlist') }}" class="dar-icon-btn relative p-2 rounded-full hover:bg-dar-cream-200 transition-colors" aria-label="{{ trans('blocks.header.wishlist') }}">
+          <i class="sicon-heart text-xl text-dar-dark"></i>
+        </a>
+
+        <salla-cart-summary class="dar-cart-icon"></salla-cart-summary>
+
+        {# Mobile menu toggle #}
+        <button class="md:hidden p-2 rounded-full hover:bg-dar-cream-200 transition-colors" onclick="document.querySelector('.dar-mobile-menu').classList.toggle('hidden')" aria-label="Menu">
+          <i class="sicon-menu text-xl text-dar-dark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {# Navigation #}
+  <nav class="hidden md:block border-t border-dar-cream-300">
+    <div class="container mx-auto px-4">
+      {% component 'header.main-menu' %}
+    </div>
+  </nav>
+
+  {# Mobile menu #}
+  <div class="dar-mobile-menu hidden md:hidden bg-dar-cream-50 border-t border-dar-cream-300">
+    <div class="container mx-auto px-4 py-4">
+      <salla-search class="w-full mb-4"></salla-search>
+      {% component 'header.main-menu' %}
+    </div>
+  </div>
+</header>

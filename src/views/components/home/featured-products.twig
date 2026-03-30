@@ -1,0 +1,20 @@
+<section class="dar-featured-products py-16">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-dar-dark">{{ trans('blocks.home.featured_products') }}</h2>
+        <div class="w-16 h-0.5 bg-dar-olive mt-2"></div>
+      </div>
+      <a href="{{ page('products') }}" class="text-dar-olive font-medium text-sm hover:text-dar-olive-dark transition-colors flex items-center gap-1">
+        {{ trans('blocks.home.view_all') }}
+        <i class="sicon-keyboard_arrow_{% if theme.is_rtl %}left{% else %}right{% endif %}"></i>
+      </a>
+    </div>
+
+    <salla-products-slider
+      source="selected"
+      slides-per-view="4"
+      class="dar-products-slider">
+    </salla-products-slider>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ page.title | default(trans('pages.products.title')) }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-2xl md:text-3xl font-bold text-dar-dark">{{ page.title | default(trans('pages.products.title')) }}</h1>
+
+      {# Sort dropdown #}
+      <div class="flex items-center gap-4">
+        <select onchange="window.location.href=this.value" class="dar-select bg-white border border-dar-cream-300 rounded-dar px-4 py-2 text-sm text-dar-dark focus:ring-2 focus:ring-dar-olive focus:border-dar-olive">
+          {% for sort in sort_list %}
+            <option value="{{ sort.url }}" {% if sort.is_selected %}selected{% endif %}>{{ sort.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    {# Product grid #}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      {% for product in products %}
+        <salla-product-card
+          product-id="{{ product.id }}"
+          class="dar-product-card">
+        </salla-product-card>
+      {% endfor %}
+    </div>
+
+    {# Load more #}
+    {% if products.next_page %}
+      <div class="text-center mt-12">
+        <a href="{{ products.next_page }}" class="inline-flex items-center gap-2 bg-dar-olive text-white px-8 py-3 rounded-dar font-medium hover:bg-dar-olive-dark transition-colors">
+          {{ trans('pages.products.load_more') }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ 'product.js' | asset('dist/product.js') }}" defer></script>
+{% endblock %}

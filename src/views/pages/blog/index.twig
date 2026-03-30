@@ -1,0 +1,28 @@
+{% extends "layouts.master" %}
+
+{% block title %}{{ trans('pages.blog.title') }} - {{ store.name }}{% endblock %}
+
+{% block content %}
+  {% component 'header.breadcrumbs' %}
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl md:text-3xl font-bold text-dar-dark mb-8">{{ trans('pages.blog.title') }}</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for post in posts %}
+        <a href="{{ post.url }}" class="dar-blog-card group bg-white rounded-dar border border-dar-cream-300 overflow-hidden hover:shadow-lg transition-shadow">
+          {% if post.image %}
+            <div class="aspect-video overflow-hidden">
+              <img src="{{ post.image }}" alt="{{ post.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            </div>
+          {% endif %}
+          <div class="p-5">
+            <time class="text-xs text-dar-dark-400">{{ post.created_at | date("j F Y") }}</time>
+            <h3 class="font-bold text-dar-dark mt-2 group-hover:text-dar-olive transition-colors">{{ post.title }}</h3>
+            <p class="text-sm text-dar-dark-400 mt-2 line-clamp-2">{{ post.excerpt }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

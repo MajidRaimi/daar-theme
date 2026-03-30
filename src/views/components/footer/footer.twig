@@ -1,0 +1,46 @@
+<footer class="dar-footer bg-dar-dark text-dar-cream mt-16">
+  {# Geometric pattern divider #}
+  <div class="dar-pattern-divider h-2 bg-dar-olive"></div>
+
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {# Brand column #}
+      <div class="lg:col-span-1">
+        <a href="{{ store.url }}" class="inline-block mb-4">
+          {% if store.logo %}
+            <img src="{{ store.logo }}" alt="{{ store.name }}" class="h-10 brightness-0 invert">
+          {% else %}
+            <span class="text-2xl font-bold text-white">{{ store.name }}</span>
+          {% endif %}
+        </a>
+        {% if store.description %}
+          <p class="text-dar-cream-400 text-sm leading-relaxed mb-6">{{ store.description }}</p>
+        {% endif %}
+        {% component 'footer.social' %}
+      </div>
+
+      {# Quick links #}
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{{ trans('blocks.footer.quick_links') }}</h4>
+        <salla-menu source="footer" class="dar-footer-menu"></salla-menu>
+      </div>
+
+      {# Contact info #}
+      <div>
+        {% component 'footer.contacts' %}
+      </div>
+
+      {# Payment methods #}
+      <div>
+        {% component 'footer.payment-methods' %}
+      </div>
+    </div>
+  </div>
+
+  {# Bottom bar #}
+  <div class="border-t border-dar-dark-light">
+    <div class="container mx-auto px-4 py-4">
+      {% component 'footer.copyrights' %}
+    </div>
+  </div>
+</footer>
