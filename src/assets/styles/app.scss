@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 // ============================================
-// Daar Store Theme - Brand Variables
+// Daar Store - Brand Overrides
 // ============================================
 
 :root {
@@ -17,36 +17,62 @@
   --dar-cream: #D3D2CF;
   --dar-cream-light: #E8E7E5;
   --dar-cream-bg: #F7F7F6;
-
-  --dar-radius: 0.75rem;
-  --dar-transition: 0.2s ease;
 }
 
-// ============================================
-// Base Styles
-// ============================================
-
 body {
+  font-family: 'IBM Plex Sans Arabic', var(--font-main), sans-serif;
   background-color: var(--dar-cream-bg);
   color: var(--dar-dark);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  transition: color var(--dar-transition);
 }
 
 // ============================================
-// Dar Product Card Customization
+// Header Overrides
+// ============================================
+
+.store-header {
+  .top-navbar {
+    background-color: var(--dar-olive);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.375rem 0;
+
+    a, button, span {
+      color: #fff;
+    }
+  }
+
+  .main-nav-container {
+    background-color: var(--dar-cream-bg);
+    border-bottom: 1px solid var(--dar-cream);
+  }
+
+  .navbar-brand img {
+    max-height: 48px;
+    width: auto;
+  }
+
+  .header-btn__icon {
+    color: var(--dar-dark);
+    font-size: 1.25rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--dar-olive);
+    }
+  }
+}
+
+// ============================================
+// Product Cards
 // ============================================
 
 salla-product-card {
   &::part(wrapper) {
     border: 1px solid var(--dar-cream);
-    border-radius: var(--dar-radius);
+    border-radius: 0.75rem;
     overflow: hidden;
-    transition: box-shadow var(--dar-transition), border-color var(--dar-transition);
+    transition: box-shadow 0.2s, border-color 0.2s;
     background: #fff;
   }
 
@@ -71,31 +97,86 @@ salla-product-card {
 
   &::part(add-to-cart-btn) {
     background-color: var(--dar-olive);
-    border-radius: var(--dar-radius);
-    transition: background-color var(--dar-transition);
+    border-color: var(--dar-olive);
+    border-radius: 0.75rem;
   }
 
   &::part(add-to-cart-btn):hover {
     background-color: var(--dar-olive-dark);
-  }
-
-  &::part(wishlist-btn) {
-    color: var(--dar-dark);
-  }
-
-  &::part(wishlist-btn):hover {
-    color: var(--dar-brown);
+    border-color: var(--dar-olive-dark);
   }
 }
 
 // ============================================
-// Cart Summary
+// Cart
 // ============================================
 
 salla-cart-summary {
   &::part(count) {
     background-color: var(--dar-brown);
     color: #fff;
+  }
+}
+
+// ============================================
+// Footer Overrides
+// ============================================
+
+.store-footer {
+  background-color: var(--dar-dark);
+  color: var(--dar-cream);
+
+  &__inner {
+    padding: 3rem 0;
+  }
+
+  h3 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: rgba(211, 210, 207, 0.7);
+    transition: color 0.2s;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .copyright-text {
+    color: rgba(211, 210, 207, 0.5);
+  }
+}
+
+// ============================================
+// Buttons
+// ============================================
+
+.btn--primary,
+.s-button-primary {
+  background-color: var(--dar-olive);
+  border-color: var(--dar-olive);
+
+  &:hover {
+    background-color: var(--dar-olive-dark);
+    border-color: var(--dar-olive-dark);
+  }
+}
+
+// ============================================
+// Search
+// ============================================
+
+salla-search {
+  &::part(wrapper) {
+    border-radius: 0.75rem;
+  }
+
+  &::part(wrapper):focus-within {
+    border-color: var(--dar-olive);
+    box-shadow: 0 0 0 3px rgba(64, 73, 40, 0.1);
   }
 }
 
@@ -120,143 +201,7 @@ salla-breadcrumb {
 }
 
 // ============================================
-// Search
-// ============================================
-
-salla-search {
-  &::part(wrapper) {
-    border: 1px solid var(--dar-cream);
-    border-radius: var(--dar-radius);
-    background: #fff;
-  }
-
-  &::part(wrapper):focus-within {
-    border-color: var(--dar-olive);
-    box-shadow: 0 0 0 3px rgba(64, 73, 40, 0.1);
-  }
-
-  &::part(input) {
-    font-size: 0.875rem;
-  }
-}
-
-// ============================================
-// Floating Navbar
-// ============================================
-
-.dar-header-wrapper {
-  // Scroll state - more visible border + shadow
-  &.scrolled nav {
-    border-color: rgba(23, 19, 16, 0.1);
-    box-shadow: 0 4px 30px rgba(23, 19, 16, 0.06);
-  }
-
-  // Nav menu links - centered, subtle style
-  salla-menu::part(link) {
-    display: inline-block;
-    padding: 0.375rem 1rem;
-    font-size: 13px;
-    border-radius: 0.5rem;
-    color: rgba(23, 19, 16, 0.5);
-    transition: color 0.2s ease;
-  }
-
-  salla-menu::part(link):hover {
-    color: var(--dar-dark);
-  }
-}
-
-// Animated hamburger - 3 lines to X
-.dar-burger {
-  &.is-open {
-    span:nth-child(1) {
-      transform: translateY(0) rotate(45deg);
-    }
-    span:nth-child(2) {
-      opacity: 0;
-    }
-    span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg);
-    }
-  }
-}
-
-// Mobile dropdown - smooth slide
-#dar-mobile-nav {
-  max-height: 0;
-  transition: max-height 0.3s ease;
-
-  &.is-open {
-    max-height: 500px;
-  }
-
-  salla-menu::part(link) {
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    border-radius: 0.75rem;
-    color: rgba(23, 19, 16, 0.5);
-    transition: color 0.2s ease;
-  }
-
-  salla-menu::part(link):hover {
-    color: var(--dar-dark);
-  }
-}
-
-// ============================================
-// Buttons
-// ============================================
-
-@layer components {
-  .dar-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-white rounded-dar transition-colors;
-    background-color: var(--dar-olive);
-
-    &:hover {
-      background-color: var(--dar-olive-dark);
-    }
-  }
-
-  .dar-btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-white rounded-dar transition-colors;
-    background-color: var(--dar-brown);
-
-    &:hover {
-      background-color: var(--dar-brown-dark);
-    }
-  }
-
-  .dar-btn-outline {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-dar transition-colors border;
-    border-color: var(--dar-cream);
-    color: var(--dar-dark);
-
-    &:hover {
-      background-color: var(--dar-cream-light);
-    }
-  }
-}
-
-// ============================================
-// Geometric Pattern Background Utility
-// ============================================
-
-.dar-pattern-bg {
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='60' height='60' fill='none' stroke='%23404928' stroke-width='0.5'/%3E%3Crect x='5' y='5' width='50' height='50' fill='none' stroke='%23404928' stroke-width='0.5' transform='rotate(15 30 30)'/%3E%3Crect x='10' y='10' width='40' height='40' fill='none' stroke='%23404928' stroke-width='0.5' transform='rotate(30 30 30)'/%3E%3Crect x='15' y='15' width='30' height='30' fill='none' stroke='%23404928' stroke-width='0.5' transform='rotate(45 30 30)'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-}
-
-// ============================================
-// Scrollbar
+// Scrollbar & Selection
 // ============================================
 
 ::-webkit-scrollbar {
@@ -276,38 +221,7 @@ salla-search {
   }
 }
 
-// ============================================
-// Selection
-// ============================================
-
 ::selection {
   background-color: var(--dar-olive);
   color: #fff;
-}
-
-// ============================================
-// Footer Links
-// ============================================
-
-.dar-footer-menu {
-  salla-menu::part(link) {
-    color: rgba(211, 210, 207, 0.6);
-    font-size: 0.875rem;
-    padding: 0.25rem 0;
-    display: block;
-  }
-
-  salla-menu::part(link):hover {
-    color: #fff;
-  }
-}
-
-// ============================================
-// Responsive adjustments
-// ============================================
-
-@media (max-width: 768px) {
-  .dar-hero h1 {
-    font-size: 1.875rem;
-  }
 }

@@ -1,72 +1,55 @@
-const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ThemeWatcher = require('@salla.sa/twilight/watcher.js');
 const CopyPlugin = require('copy-webpack-plugin');
-const TwilightWatcherPlugin = require('@salla.sa/twilight/watcher');
+const path = require('path');
 
-module.exports = (env, argv) => {
-  const isProduction = argv.mode === 'production';
+const asset = (file) => path.resolve('src/assets', file || '');
+const dist = (file) => path.resolve('public', file || '');
 
-  return {
-    entry: {
-      app: ['./src/assets/styles/app.scss', './src/assets/js/app.js'],
-      home: './src/assets/js/home.js',
-      product: './src/assets/js/product.js',
-      checkout: './src/assets/js/checkout.js',
-    },
-    output: {
-      path: path.resolve(__dirname, 'public'),
-      filename: '[name].js',
-      clean: true,
-    },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: [['@babel/preset-env', { targets: '> 0.25%, not dead' }]],
-            },
+module.exports = {
+  entry: {
+    app: [asset('styles/app.scss'), asset('js/app.js')],
+    home: asset('js/home.js'),
+    checkout: asset('js/checkout.js'),
+    product: asset('js/product.js'),
+  },
+  output: {
+    path: dist(),
+    clean: true,
+  },
+  stats: { modules: false, assetsSort: 'size', assetsSpace: 50 },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
           },
         },
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader',
-          ],
-        },
-        {
-          test: /\.(woff|woff2|eot|ttf|otf)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'fonts/[name][ext]',
-          },
-        },
-      ],
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-      }),
-      new CopyPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, 'src/assets/images'),
-            to: path.resolve(__dirname, 'public/images'),
-            noErrorOnMissing: true,
-          },
+      },
+      {
+        test: /\.(s(a|c)ss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { url: false } },
+          'postcss-loader',
+          'sass-loader',
         ],
-      }),
-      new TwilightWatcherPlugin(),
+      },
     ],
-    optimization: {
-      minimizer: ['...', new CssMinimizerPlugin()],
-    },
-    devtool: isProduction ? false : 'source-map',
-  };
+  },
+  plugins: [
+    new ThemeWatcher(),
+    new MiniCssExtractPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: asset('images'), to: dist('images') }],
+    }),
+  ],
+  optimization: {
+    minimizer: ['...', new CssMinimizerPlugin()],
+  },
 };

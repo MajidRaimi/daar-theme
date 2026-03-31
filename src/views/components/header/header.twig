@@ -1,56 +1,68 @@
-<header class="dar-header-wrapper fixed top-0 left-0 right-0 z-50 px-4 pt-4 transition-all duration-500">
-  <nav class="w-full max-w-6xl mx-auto rounded-2xl border transition-all duration-500 border-dar-dark/[0.06] bg-dar-cream-50/80 backdrop-blur-xl">
-    <div class="relative flex items-center justify-between h-14 px-3">
-
-      {# Logo #}
-      <a class="shrink-0 relative z-10" href="{{ store.url }}">
-        {% if store.logo %}
-          <img src="{{ store.logo|cdn(175) }}" alt="{{ store.name }}" loading="lazy" class="h-7 w-auto">
-        {% else %}
-          <span class="text-lg font-bold text-dar-dark">{{ store.name }}</span>
-        {% endif %}
-      </a>
-
-      {# Centered nav links - desktop #}
-      <div class="hidden md:flex items-center gap-1 absolute inset-0 justify-center pointer-events-none">
-        <div class="flex items-center gap-1 pointer-events-auto">
-          <salla-menu></salla-menu>
-        </div>
-      </div>
-
-      {# Right actions - desktop #}
-      <div class="hidden md:flex items-center gap-3 shrink-0 relative z-10">
-        {# Localization #}
-        <salla-localization-modal class="dar-lang-btn"></salla-localization-modal>
-
-        {# Cart CTA #}
-        <salla-cart-summary class="dar-cart-btn"></salla-cart-summary>
-      </div>
-
-      {# Hamburger - mobile #}
-      <button class="dar-burger md:hidden relative w-9 h-9 flex items-center justify-center p-2" aria-label="Menu"
-        onclick="this.classList.toggle('is-open'); var m=document.getElementById('dar-mobile-nav'); m.classList.toggle('is-open');">
-        <span class="absolute block w-5 h-px bg-dar-dark transition-all duration-300 -translate-y-[5px]"></span>
-        <span class="absolute block w-5 h-px bg-dar-dark transition-all duration-300"></span>
-        <span class="absolute block w-5 h-px bg-dar-dark transition-all duration-300 translate-y-[5px]"></span>
-      </button>
-
-    </div>
-
-    {# Mobile dropdown #}
-    <div id="dar-mobile-nav" class="md:hidden transition-all duration-300 overflow-hidden max-h-0">
-      <div class="px-5 py-4 space-y-1">
-        <salla-menu></salla-menu>
-
-        <div class="flex items-center gap-2 mt-3 pt-3 border-t border-dar-dark/[0.06]">
-          <salla-cart-summary></salla-cart-summary>
+{#
+  Daar Store Header
+  Floating glass navbar inspired by modern design
+#}
+<header class="store-header">
+  {# Top Nav #}
+  <div class="top-navbar">
+    <div class="container flex justify-between">
+      <div class="flex-1 flex items-center gap-2">
+        {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+          <button type="button" onclick="salla.event.dispatch('localization::open')" class="btn--rounded-gray basis-0">
+            <span>{{ user.language.name }}</span>
+            <span class="mx-1.5">|</span>
+            <span>{{ currency.symbol }}</span>
+          </button>
           <salla-localization-modal></salla-localization-modal>
+        {% endif %}
+
+        {% if store.scope %}
+          <button class="btn--rounded-gray" onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
+            <i class="sicon-location rtl:ml-1 ltr:mr-1"></i> {{ store.scope.name }}
+          </button>
+        {% endif %}
+
+        <div class="header-search flex-1">
+          <salla-search inline oval height="36"></salla-search>
+        </div>
+      </div>
+      <salla-contacts is-header></salla-contacts>
+    </div>
+  </div>
+
+  {# Main Nav #}
+  <div id="mainnav" class="main-nav-container shadow-default bg-white flex items-center">
+    <div class="inner bg-inherit w-full">
+      <div class="container">
+        <div class="flex items-stretch justify-between relative">
+          <div class="flex items-center">
+            <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
+              <i class="sicon-menu text-primary text-2xl"></i>
+            </a>
+            <a class="navbar-brand" href="{{ store.url }}">
+              <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
+              {% if is_page('index') %}
+                <h1 class="sr-only">{{ store.name }}</h1>
+              {% else %}
+                <h2 class="sr-only">{{ store.name }}</h2>
+              {% endif %}
+            </a>
+            <custom-main-menu></custom-main-menu>
+          </div>
+          <div class="flex items-center justify-end my-2.5">
+            {% if user.type == 'user' %}
+              <salla-user-menu avatar-only show-header></salla-user-menu>
+            {% else %}
+              <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
+                <i class="header-btn__icon sicon-user-circle"></i>
+              </button>
+            {% endif %}
+            <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
+              <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
+            </salla-cart-summary>
+          </div>
         </div>
       </div>
     </div>
-
-  </nav>
+  </div>
 </header>
-
-{# Spacer #}
-<div class="h-[72px]"></div>
