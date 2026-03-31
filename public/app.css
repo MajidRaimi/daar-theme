@@ -700,9 +700,6 @@ video {
 .ml-0{
   margin-left: 0px;
 }
-.ml-4{
-  margin-left: 1rem;
-}
 .mr-0{
   margin-right: 0px;
 }
@@ -24947,12 +24944,6 @@ body {
 .store-header .main-nav-container .flex.items-stretch {
   min-height: 3rem;
 }
-.store-header .mburger {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
 .store-header salla-cart-summary::part(total-price), .store-header salla-cart-summary::part(price) {
   display: none;
 }
@@ -25238,9 +25229,6 @@ salla-breadcrumb::part(current) {
 .ltr\:mr-1:where([dir="ltr"], [dir="ltr"] *){
   margin-right: 0.25rem;
 }
-.ltr\:mr-4:where([dir="ltr"], [dir="ltr"] *){
-  margin-right: 1rem;
-}
 @media (min-width: 1024px){
   .ltr\:lg\:pl-20:where([dir="ltr"], [dir="ltr"] *){
     padding-left: 5rem;
@@ -25251,15 +25239,6 @@ salla-breadcrumb::part(current) {
 }
 .rtl\:ml-1:where([dir="rtl"], [dir="rtl"] *){
   margin-left: 0.25rem;
-}
-.rtl\:ml-4:where([dir="rtl"], [dir="rtl"] *){
-  margin-left: 1rem;
-}
-.rtl\:ml-\[unset\]:where([dir="rtl"], [dir="rtl"] *){
-  margin-left: unset;
-}
-.rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *){
-  margin-right: 1rem;
 }
 @media (min-width: 1024px){
   .rtl\:lg\:pl-20:where([dir="rtl"], [dir="rtl"] *){
