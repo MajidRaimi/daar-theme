@@ -1,8 +1,1 @@
-<div class="dar-user-menu relative">
-  <button
-    onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.dispatch('login::open')"
-    class="p-2 rounded-full hover:bg-dar-cream-200 transition-colors"
-    aria-label="{{ trans('blocks.header.login') }}">
-    <i class="sicon-user text-xl text-dar-dark"></i>
-  </button>
-</div>
+<salla-user-menu></salla-user-menu>
