@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{!function(){const e=document.querySelectorAll(".dar-product-gallery button"),t=document.getElementById("product-images");e.length&&t&&e.forEach((d,o)=>{d.addEventListener("click",()=>{e.forEach(e=>e.classList.remove("border-dar-olive")),d.classList.add("border-dar-olive"),t.swiper&&t.swiper.slideTo(o)})})}()});

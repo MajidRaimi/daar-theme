@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{!function(){const t=document.querySelector(".dar-hero");if(!t)return;const e=t.querySelector(".container");e&&(e.style.opacity="0",e.style.transform="translateY(20px)",e.style.transition="opacity 0.6s ease, transform 0.6s ease",requestAnimationFrame(()=>{e.style.opacity="1",e.style.transform="translateY(0)"}))}()});
