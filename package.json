@@ -13,6 +13,7 @@
     "@babel/runtime": "^7.26.0",
     "animejs": "^3.2.2",
     "lite-youtube-embed": "^0.3.3",
+    "mmenu-light": "^3.2.2",
     "sweetalert2": "^11.14.5"
   },
   "devDependencies": {

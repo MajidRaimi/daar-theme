@@ -1,224 +1,121 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+ * IMPORTANT NOTE: Theme based on Tailwindcss but for the purpose of simplifing the DOM we use
+ * tailwind classes with @apply directive in the SCSS files
+*/
 
-// ============================================
-// Daar Store - Brand Overrides
-// ============================================
+/**
+ * SETTINGS
+ * Tailwind.............Import tailwind.
+ * Fonts................Any font files.
+ * Global...............Project-specific, globally available variables.
+ * Breakpoints..........Mixins and variables for responsive styles.
+ *
+ * GENERIC
+ * Common...............All commn styles and assistan classes and common style fixes
+ * Reset................Reset specific elements to make them easier to style in other contexts.
+ * Animations...........Some of animations from anime.css
+ * Lazyload.............Lazyload placeholder styles
+ * RTL..................Specific styles for RTL.
+ * LTR..................Specific styles for LTR.
+ *
+ * ELEMENTS
+ * Forms................Element-level form styling.
+ * Buttons..............Specific styles for buttons.
+ * Radio................Specific styles for custom radio button.
+ * Radio Images.........Specific styles for radio images, used in product options.
+ *
+ * COMPONENTS
+ * Header...............Specific styles for header styles.
+ * Footer...............Specific styles for footer styles.
+ * Menu.................Specific styles for main menu and mobile menu styles.
+ * User Menu............Specific styles for user menu dropdown.
+ * User Pages...........Specific styles for user pages like profile, notifications, orders...
+ * Home Blocks..........Specific styles for home blocks.
+ * Slider...............Specific styles for sliders.
+ * Product..............Specific styles for single product page and it's elements.
+ * Brands...............Specific styles for brands page.
+ * Placeholder..........Specific styles for no content placeholders.
+ * Gifting..............Specific styles for gifting system.
+ * Loyalty..............Specific styles for loyalty system.
+ *
+ * UTILITIES
+ * Chat Bots............Specific styles for chats bots widget.
+ * Swal.................Specific styles for Sweet Alert addon.
+ * Safari Fixes.........Specific styles for Safari Browser.
+ *
+ * EMBEDED ADDONS
+ * Lite Youtube Embed...Specific styles for lite-youtube-embed addon.
+ * Swiper...............Specific styles for swiper slider addon.
+ * MMenu................Specific styles for mmenu addon.
+ *
+*/
 
+@import './01-settings/tailwind';
+@import './01-settings/fonts';
+@import './01-settings/global';
+@import './01-settings/breakpoints';
+
+@import './02-generic/reset';
+@import './02-generic/common';
+@import './02-generic/tooltip';
+@import './02-generic/animations';
+@import './02-generic/lazyload';
+@import './02-generic/rtl';
+@import './02-generic/ltr';
+@import './02-generic/mixins';
+
+@import './03-elements/form';
+@import './03-elements/buttons';
+@import './03-elements/radio';
+@import './03-elements/radio-images';
+
+@import './04-components/header';
+@import './04-components/footer';
+@import './04-components/menus';
+@import './04-components/user-menu';
+@import './04-components/user-pages';
+@import './04-components/home-blocks';
+@import './04-components/slider';
+@import './04-components/product';
+@import './04-components/brands';
+@import './04-components/no-content-placeholder';
+@import './04-components/gifting';
+@import './04-components/loyalty';
+@import './04-components/virtooal';
+@import './04-components/landing-page';
+@import './04-components/filters';
+@import './04-components/add-product-toast';
+
+@import './05-utilities/chat-bots';
+@import './05-utilities/swal';
+@import './05-utilities/safari-fixes';
+@import './05-utilities/font-customization';
+
+@import 'lite-youtube-embed/src/lite-yt-embed.css';
+@import 'mmenu-light/dist/mmenu-light.css';
+
+// Daar Brand Overrides
 :root {
   --dar-olive: #404928;
   --dar-olive-light: #5a6638;
   --dar-olive-dark: #2e341c;
   --dar-brown: #562726;
-  --dar-brown-light: #7a3937;
-  --dar-brown-dark: #3d1c1b;
   --dar-dark: #171310;
   --dar-cream: #D3D2CF;
-  --dar-cream-light: #E8E7E5;
   --dar-cream-bg: #F7F7F6;
 }
 
 body {
   font-family: 'IBM Plex Sans Arabic', var(--font-main), sans-serif;
-  background-color: var(--dar-cream-bg);
-  color: var(--dar-dark);
-  -webkit-font-smoothing: antialiased;
 }
 
-// ============================================
-// Header Overrides
-// ============================================
-
-.store-header {
-  .top-navbar {
-    background-color: var(--dar-olive);
-    color: #fff;
-    font-size: 0.75rem;
-    padding: 0.375rem 0;
-
-    a, button, span {
-      color: #fff;
-    }
-  }
-
-  .main-nav-container {
-    background-color: var(--dar-cream-bg);
-    border-bottom: 1px solid var(--dar-cream);
-  }
-
-  .navbar-brand img {
-    max-height: 48px;
-    width: auto;
-  }
-
-  .header-btn__icon {
-    color: var(--dar-dark);
-    font-size: 1.25rem;
-    transition: color 0.2s;
-
-    &:hover {
-      color: var(--dar-olive);
-    }
-  }
+.store-header .top-navbar {
+  background-color: var(--dar-olive);
 }
-
-// ============================================
-// Product Cards
-// ============================================
-
-salla-product-card {
-  &::part(wrapper) {
-    border: 1px solid var(--dar-cream);
-    border-radius: 0.75rem;
-    overflow: hidden;
-    transition: box-shadow 0.2s, border-color 0.2s;
-    background: #fff;
-  }
-
-  &::part(wrapper):hover {
-    box-shadow: 0 4px 20px rgba(23, 19, 16, 0.08);
-    border-color: var(--dar-olive);
-  }
-
-  &::part(product-title) {
-    color: var(--dar-dark);
-    font-weight: 600;
-  }
-
-  &::part(price) {
-    color: var(--dar-dark);
-    font-weight: 700;
-  }
-
-  &::part(sale-price) {
-    color: var(--dar-brown);
-  }
-
-  &::part(add-to-cart-btn) {
-    background-color: var(--dar-olive);
-    border-color: var(--dar-olive);
-    border-radius: 0.75rem;
-  }
-
-  &::part(add-to-cart-btn):hover {
-    background-color: var(--dar-olive-dark);
-    border-color: var(--dar-olive-dark);
-  }
-}
-
-// ============================================
-// Cart
-// ============================================
-
-salla-cart-summary {
-  &::part(count) {
-    background-color: var(--dar-brown);
-    color: #fff;
-  }
-}
-
-// ============================================
-// Footer Overrides
-// ============================================
 
 .store-footer {
   background-color: var(--dar-dark);
   color: var(--dar-cream);
-
-  &__inner {
-    padding: 3rem 0;
-  }
-
-  h3 {
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  a {
-    color: rgba(211, 210, 207, 0.7);
-    transition: color 0.2s;
-
-    &:hover {
-      color: #fff;
-    }
-  }
-
-  .copyright-text {
-    color: rgba(211, 210, 207, 0.5);
-  }
-}
-
-// ============================================
-// Buttons
-// ============================================
-
-.btn--primary,
-.s-button-primary {
-  background-color: var(--dar-olive);
-  border-color: var(--dar-olive);
-
-  &:hover {
-    background-color: var(--dar-olive-dark);
-    border-color: var(--dar-olive-dark);
-  }
-}
-
-// ============================================
-// Search
-// ============================================
-
-salla-search {
-  &::part(wrapper) {
-    border-radius: 0.75rem;
-  }
-
-  &::part(wrapper):focus-within {
-    border-color: var(--dar-olive);
-    box-shadow: 0 0 0 3px rgba(64, 73, 40, 0.1);
-  }
-}
-
-// ============================================
-// Breadcrumbs
-// ============================================
-
-salla-breadcrumb {
-  &::part(link) {
-    color: rgba(23, 19, 16, 0.5);
-    font-size: 0.875rem;
-  }
-
-  &::part(link):hover {
-    color: var(--dar-olive);
-  }
-
-  &::part(current) {
-    color: var(--dar-dark);
-    font-weight: 500;
-  }
-}
-
-// ============================================
-// Scrollbar & Selection
-// ============================================
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--dar-cream-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--dar-cream);
-  border-radius: 3px;
-
-  &:hover {
-    background: var(--dar-olive);
-  }
 }
 
 ::selection {
