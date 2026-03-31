@@ -36,7 +36,7 @@
         </a>
 
         {# User account #}
-        <button onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.auth.onLoginOpen()" class="w-8 h-8 rounded-lg flex items-center justify-center text-dar-dark/40 hover:text-dar-dark hover:bg-dar-dark/[0.06] transition-colors" aria-label="{{ trans('blocks.header.login') }}">
+        <button onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.dispatch('login::open')" class="w-8 h-8 rounded-lg flex items-center justify-center text-dar-dark/40 hover:text-dar-dark hover:bg-dar-dark/[0.06] transition-colors" aria-label="{{ trans('blocks.header.login') }}">
           <svg class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
           </svg>
@@ -90,7 +90,7 @@
           <a href="{{ page('wishlist') }}" class="flex-1 py-3 text-sm text-dar-dark/50 hover:text-dar-dark rounded-xl hover:bg-dar-dark/[0.06] transition-colors text-center">
             {{ trans('blocks.header.wishlist') }}
           </a>
-          <button onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.auth.onLoginOpen()" class="flex-1 py-3 text-sm text-dar-dark/50 hover:text-dar-dark rounded-xl hover:bg-dar-dark/[0.06] transition-colors text-center">
+          <button onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.dispatch('login::open')" class="flex-1 py-3 text-sm text-dar-dark/50 hover:text-dar-dark rounded-xl hover:bg-dar-dark/[0.06] transition-colors text-center">
             {{ trans('blocks.header.login') }}
           </button>
         </div>

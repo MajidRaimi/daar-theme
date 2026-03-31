@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ store.locale }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
 <head>
   {% hook 'head:start' %}
 
@@ -8,8 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{% block title %}{{ store.name }}{% endblock %}</title>
 
-  <link rel="stylesheet" href="{{ 'fonts' | cdn }}">
-  <link rel="stylesheet" href="{{ 'saicon' | cdn }}">
+  <link rel="stylesheet" href="{{ theme.font.path|cdn }}">
+  <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -49,8 +49,11 @@
 
   {% component 'footer.footer' %}
 
-  <salla-login-modal></salla-login-modal>
+  {% if user.type == 'guest' %}
+    <salla-login-modal></salla-login-modal>
+  {% endif %}
 
+  <script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
   {% block scripts %}{% endblock %}
 
   {% hook 'body:end' %}
