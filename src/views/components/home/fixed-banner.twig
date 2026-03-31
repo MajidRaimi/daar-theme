@@ -1,0 +1,9 @@
+<section class="dar-fixed-banner py-8">
+  <div class="container">
+    {% if component.image %}
+      <a href="{{ component.link }}" class="block rounded-lg overflow-hidden">
+        <img src="{{ component.image }}" alt="{{ component.title }}" class="w-full" loading="lazy">
+      </a>
+    {% endif %}
+  </div>
+</section>

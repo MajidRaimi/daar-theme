@@ -1,0 +1,6 @@
+<section class="dar-parallax py-20 bg-fixed bg-cover bg-center" {% if component.image %}style="background-image: url('{{ component.image }}')"{% endif %}>
+  <div class="container text-center text-white">
+    {% if component.title %}<h2 class="text-3xl font-bold mb-4">{{ component.title }}</h2>{% endif %}
+    {% if component.description %}<p class="text-lg">{{ component.description }}</p>{% endif %}
+  </div>
+</section>

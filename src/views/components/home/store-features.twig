@@ -1,0 +1,13 @@
+<section class="dar-store-features py-12 bg-gray-50">
+  <div class="container">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      {% for feature in component.features %}
+        <div class="p-4">
+          {% if feature.icon %}<i class="{{ feature.icon }} text-3xl text-primary mb-3"></i>{% endif %}
+          <h4 class="font-semibold">{{ feature.title }}</h4>
+          {% if feature.description %}<p class="text-sm text-gray-500 mt-1">{{ feature.description }}</p>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

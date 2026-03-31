@@ -1,0 +1,11 @@
+<section class="dar-square-photos py-12">
+  <div class="container">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {% for image in component.images %}
+        <div class="aspect-square rounded-lg overflow-hidden">
+          <img src="{{ image }}" alt="" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

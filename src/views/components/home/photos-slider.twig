@@ -1,0 +1,9 @@
+<section class="dar-photos-slider py-12">
+  <div class="container">
+    <salla-slider auto-play loop>
+      {% for image in component.images %}
+        <div class="swiper-slide"><img src="{{ image }}" alt="" class="w-full rounded-lg" loading="lazy"></div>
+      {% endfor %}
+    </salla-slider>
+  </div>
+</section>
