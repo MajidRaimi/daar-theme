@@ -173,7 +173,10 @@ body {
     min-height: 3rem;
   }
 
-  // Burger is now in actions div, no positioning needed
+  // Hide cart price "0 SAR"
+  .s-cart-summary-content {
+    display: none;
+  }
 
   // Hide "0 SAR" / price text in cart
   salla-cart-summary {
