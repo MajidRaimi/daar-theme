@@ -18,11 +18,9 @@
 
   <style>
     :root {
-      --color-primary: {{ theme.color.primary | default('#404928') }};
-      --color-primary-dark: {{ theme.color.darker(0.15) | default('#2e341c') }};
-      --color-primary-light: {{ theme.color.lighter(0.15) | default('#5a6638') }};
-      --color-primary-reverse: {{ theme.color.reverse_text | default('#ffffff') }};
-      --font-main: {{ theme.font.name | default('IBM Plex Sans Arabic') }};
+      --color-primary: {{ theme.color.primary }};
+      --color-primary-reverse: {{ theme.color.reverse_text }};
+      --font-main: {{ theme.font.name }};
 
       --dar-olive: #404928;
       --dar-brown: #562726;
@@ -40,7 +38,7 @@
   {% hook 'head' %}
   {% hook 'head:end' %}
 </head>
-<body class="{% hook 'body:classes' %} font-dar antialiased bg-dar-cream-50 text-dar-dark">
+<body class="font-dar antialiased bg-dar-cream-50 text-dar-dark">
   {% hook 'body:start' %}
 
   {% component 'header.header' %}
