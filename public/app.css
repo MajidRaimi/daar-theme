@@ -24944,8 +24944,14 @@ body {
 .store-header .main-nav-container .flex.items-stretch {
   min-height: 3rem;
 }
-.store-header .s-cart-summary-content {
-  display: none;
+.store-header .s-cart-summary-content,
+.store-header .s-cart-summary-total {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
 }
 .store-header salla-cart-summary::part(total-price), .store-header salla-cart-summary::part(price) {
   display: none;
