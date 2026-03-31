@@ -173,8 +173,13 @@ body {
     min-height: 3rem;
   }
 
-  // Keep default RTL order: logo right, actions left
-  // (Raed's default is already correct for RTL)
+  // Move burger from logo group to actions group visually
+  .mburger {
+    position: absolute;
+    left: 0.75rem; // in RTL, left = the actions side
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
   // Hide "0 SAR" / price text in cart
   salla-cart-summary {

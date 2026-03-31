@@ -24947,6 +24947,12 @@ body {
 .store-header .main-nav-container .flex.items-stretch {
   min-height: 3rem;
 }
+.store-header .mburger {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .store-header salla-cart-summary::part(total-price), .store-header salla-cart-summary::part(price) {
   display: none;
 }
