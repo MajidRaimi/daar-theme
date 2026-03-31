@@ -1,11 +1,15 @@
 {
-  "name": "Daar Theme",
+  "name": {
+    "ar": "ثيم دار",
+    "en": "Daar Theme"
+  },
   "description": {
     "ar": "ثيم دار - متجر مستلزمات المنزل",
     "en": "Daar Theme - Home Goods Store"
   },
-  "version": "1.0.0",
-  "author": "Daar Store",
+  "author_email": "",
+  "repository": "",
+  "support_url": "",
   "features": [
     "component-photos-slider",
     "component-featured-products",
@@ -18,7 +22,7 @@
   ],
   "components": [
     {
-      "name": "dar-hero-banner",
+      "key": "a1b2c3d4-1111-4aaa-bbbb-000000000001",
       "title": {
         "ar": "بانر دار الرئيسي",
         "en": "Daar Hero Banner"
@@ -54,7 +58,7 @@
       ]
     },
     {
-      "name": "dar-categories",
+      "key": "a1b2c3d4-2222-4aaa-bbbb-000000000002",
       "title": {
         "ar": "أقسام دار",
         "en": "Daar Categories"
@@ -76,7 +80,7 @@
       ]
     },
     {
-      "name": "dar-about-section",
+      "key": "a1b2c3d4-3333-4aaa-bbbb-000000000003",
       "title": {
         "ar": "عن دار",
         "en": "About Daar"
