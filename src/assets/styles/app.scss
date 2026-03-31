@@ -173,10 +173,8 @@ body {
     min-height: 3rem;
   }
 
-  // Reverse the row: logo right, actions left (RTL store)
-  .main-nav-container .flex.items-stretch.justify-between {
-    flex-direction: row-reverse;
-  }
+  // Keep default RTL order: logo right, actions left
+  // (Raed's default is already correct for RTL)
 
   // Hide "0 SAR" / price text in cart
   salla-cart-summary {
