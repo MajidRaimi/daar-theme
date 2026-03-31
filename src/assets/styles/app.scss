@@ -141,21 +141,81 @@ salla-search {
 }
 
 // ============================================
-// Menu
+// Floating Navbar
 // ============================================
 
-salla-menu {
-  &::part(link) {
-    color: var(--dar-dark);
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    transition: color var(--dar-transition);
+.dar-header-wrapper {
+  &.scrolled .dar-header {
+    border-color: rgba(23, 19, 16, 0.1);
+    box-shadow: 0 4px 30px rgba(23, 19, 16, 0.06);
+  }
+}
+
+// Desktop nav menu - centered links
+.dar-nav-menu {
+  salla-menu::part(link) {
+    display: block;
+    padding: 0.375rem 1rem;
+    font-size: 13px;
+    border-radius: 0.5rem;
+    color: rgba(23, 19, 16, 0.5);
+    transition: color 0.2s ease;
   }
 
-  &::part(link):hover {
-    color: var(--dar-olive);
+  salla-menu::part(link):hover {
+    color: var(--dar-dark);
   }
+}
+
+// Mobile menu links
+.dar-mobile-menu-links {
+  salla-menu::part(link) {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.75rem;
+    color: rgba(23, 19, 16, 0.5);
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  salla-menu::part(link):hover {
+    color: var(--dar-dark);
+  }
+}
+
+// Animated hamburger
+.dar-burger {
+  &.is-open {
+    .dar-burger-line:nth-child(1) {
+      transform: translateY(0) rotate(45deg);
+    }
+    .dar-burger-line:nth-child(2) {
+      opacity: 0;
+    }
+    .dar-burger-line:nth-child(3) {
+      transform: translateY(0) rotate(-45deg);
+    }
+  }
+}
+
+// Mobile dropdown
+#dar-mobile-nav {
+  max-height: 0;
+  transition: max-height 0.3s ease;
+
+  &.is-open {
+    max-height: 500px;
+  }
+}
+
+// Search overlay
+#dar-search-overlay {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 // ============================================

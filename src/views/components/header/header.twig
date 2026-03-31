@@ -1,68 +1,121 @@
-<header class="dar-header sticky top-0 z-50 bg-dar-cream-50 border-b border-dar-cream-300 transition-all duration-300">
-  {# Top bar with contact info #}
-  <div class="bg-dar-olive text-white text-xs py-1.5">
-    <div class="container mx-auto px-4 flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        {% if store.contacts.mobile %}
-          <a href="tel:{{ store.contacts.mobile }}" class="flex items-center gap-1 hover:text-dar-cream transition-colors">
-            <i class="sicon-phone text-[10px]"></i>
-            <span>{{ store.contacts.mobile }}</span>
-          </a>
-        {% endif %}
-      </div>
-      <div class="flex items-center gap-3">
-        <salla-localization-modal></salla-localization-modal>
-      </div>
-    </div>
-  </div>
+{# Floating navbar inspired by glass morphism design #}
+<div class="dar-header-wrapper fixed top-0 left-0 right-0 z-50 px-4 pt-4 transition-all duration-500">
+  <nav class="dar-header w-full max-w-6xl mx-auto rounded-2xl border transition-all duration-500 border-dar-dark/[0.06] bg-dar-cream-50/80 backdrop-blur-xl">
+    <div class="relative flex items-center justify-between h-14 px-3">
 
-  {# Main header #}
-  <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between py-4">
       {# Logo #}
-      <a href="{{ store.url }}" class="dar-logo flex-shrink-0">
+      <a href="{{ store.url }}" class="shrink-0 relative z-10">
         {% if store.logo %}
-          <img src="{{ store.logo }}" alt="{{ store.name }}" class="h-10 md:h-12 w-auto">
+          <img src="{{ store.logo }}" alt="{{ store.name }}" loading="lazy" class="h-7 w-auto">
         {% else %}
-          <span class="text-2xl font-bold text-dar-dark">{{ store.name }}</span>
+          <span class="text-lg font-bold text-dar-dark">{{ store.name }}</span>
         {% endif %}
       </a>
 
-      {# Search bar #}
-      <div class="hidden md:flex flex-1 max-w-lg mx-8">
-        <salla-search class="w-full"></salla-search>
+      {# Centered navigation links - desktop #}
+      <div class="hidden md:flex items-center gap-1 absolute inset-0 justify-center pointer-events-none">
+        <div class="flex items-center gap-1 pointer-events-auto">
+          <salla-menu class="dar-nav-menu"></salla-menu>
+        </div>
       </div>
 
-      {# Actions #}
-      <div class="flex items-center gap-3">
-        {% component 'header.user-menu' %}
+      {# Right side actions - desktop #}
+      <div class="hidden md:flex items-center gap-2 shrink-0 relative z-10">
+        {# Search toggle #}
+        <button onclick="document.getElementById('dar-search-overlay').classList.toggle('hidden')" class="w-8 h-8 rounded-lg flex items-center justify-center text-dar-dark/40 hover:text-dar-dark hover:bg-dar-dark/[0.06] transition-colors" aria-label="{{ trans('blocks.header.search') }}">
+          <svg class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+          </svg>
+        </button>
 
-        <a href="{{ page('wishlist') }}" class="dar-icon-btn relative p-2 rounded-full hover:bg-dar-cream-200 transition-colors" aria-label="{{ trans('blocks.header.wishlist') }}">
-          <i class="sicon-heart text-xl text-dar-dark"></i>
+        {# Wishlist #}
+        <a href="{{ page('wishlist') }}" class="w-8 h-8 rounded-lg flex items-center justify-center text-dar-dark/40 hover:text-dar-dark hover:bg-dar-dark/[0.06] transition-colors" aria-label="{{ trans('blocks.header.wishlist') }}">
+          <svg class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+          </svg>
         </a>
 
-        <salla-cart-summary class="dar-cart-icon"></salla-cart-summary>
+        {# User account #}
+        <button onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.auth.onLoginOpen()" class="w-8 h-8 rounded-lg flex items-center justify-center text-dar-dark/40 hover:text-dar-dark hover:bg-dar-dark/[0.06] transition-colors" aria-label="{{ trans('blocks.header.login') }}">
+          <svg class="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+          </svg>
+        </button>
 
-        {# Mobile menu toggle #}
-        <button class="md:hidden p-2 rounded-full hover:bg-dar-cream-200 transition-colors" onclick="document.querySelector('.dar-mobile-menu').classList.toggle('hidden')" aria-label="Menu">
-          <i class="sicon-menu text-xl text-dar-dark"></i>
+        {# Cart CTA button #}
+        <a href="{{ page('cart') }}" class="dar-cart-btn flex items-center gap-2 px-5 py-2 text-[13px] font-medium bg-dar-olive/80 hover:bg-dar-olive transition-colors rounded-xl text-white">
+          <svg class="w-[16px] h-[16px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+          </svg>
+          {{ trans('blocks.header.cart') }}
+          <salla-cart-summary class="dar-cart-count"></salla-cart-summary>
+        </a>
+      </div>
+
+      {# Mobile - cart + hamburger #}
+      <div class="md:hidden flex items-center gap-2 relative z-10">
+        <salla-cart-summary class="dar-cart-icon-mobile"></salla-cart-summary>
+
+        {# Animated hamburger button #}
+        <button class="dar-burger relative w-9 h-9 flex items-center justify-center p-2" aria-label="Menu" onclick="this.classList.toggle('is-open'); document.getElementById('dar-mobile-nav').classList.toggle('is-open')">
+          <span class="dar-burger-line absolute block w-5 h-px bg-dar-dark transition-all duration-300 -translate-y-[5px]"></span>
+          <span class="dar-burger-line absolute block w-5 h-px bg-dar-dark transition-all duration-300"></span>
+          <span class="dar-burger-line absolute block w-5 h-px bg-dar-dark transition-all duration-300 translate-y-[5px]"></span>
         </button>
       </div>
-    </div>
-  </div>
 
-  {# Navigation #}
-  <nav class="hidden md:block border-t border-dar-cream-300">
-    <div class="container mx-auto px-4">
-      {% component 'header.main-menu' %}
     </div>
+
+    {# Mobile dropdown menu #}
+    <div id="dar-mobile-nav" class="md:hidden transition-all duration-300 overflow-hidden max-h-0">
+      <div class="px-5 py-4 space-y-1">
+        {# Mobile search #}
+        <div class="mb-3">
+          <salla-search class="w-full"></salla-search>
+        </div>
+
+        {# Mobile menu links #}
+        <salla-menu class="dar-mobile-menu-links"></salla-menu>
+
+        {# Mobile cart button #}
+        <a href="{{ page('cart') }}" class="flex items-center justify-center gap-2 mt-3 px-5 py-3 text-sm font-medium bg-dar-olive/80 rounded-xl text-white">
+          {{ trans('blocks.header.cart') }}
+          <svg class="w-3.5 h-3.5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+          </svg>
+        </a>
+
+        {# Mobile action row #}
+        <div class="flex items-center gap-2 mt-2 px-4">
+          <a href="{{ page('wishlist') }}" class="flex-1 py-3 text-sm text-dar-dark/50 hover:text-dar-dark rounded-xl hover:bg-dar-dark/[0.06] transition-colors text-center">
+            {{ trans('blocks.header.wishlist') }}
+          </a>
+          <button onclick="salla.auth.isLoggedIn() ? window.location.href='{{ page('profile') }}' : salla.event.auth.onLoginOpen()" class="flex-1 py-3 text-sm text-dar-dark/50 hover:text-dar-dark rounded-xl hover:bg-dar-dark/[0.06] transition-colors text-center">
+            {{ trans('blocks.header.login') }}
+          </button>
+        </div>
+      </div>
+    </div>
+
   </nav>
+</div>
 
-  {# Mobile menu #}
-  <div class="dar-mobile-menu hidden md:hidden bg-dar-cream-50 border-t border-dar-cream-300">
-    <div class="container mx-auto px-4 py-4">
-      <salla-search class="w-full mb-4"></salla-search>
-      {% component 'header.main-menu' %}
+{# Search overlay #}
+<div id="dar-search-overlay" class="hidden fixed inset-0 z-[60] bg-dar-dark/50 backdrop-blur-sm transition-opacity duration-300">
+  <div class="flex items-start justify-center pt-32 px-4">
+    <div class="w-full max-w-xl bg-white rounded-2xl shadow-2xl p-4">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm font-medium text-dar-dark">{{ trans('blocks.header.search') }}</span>
+        <button onclick="document.getElementById('dar-search-overlay').classList.add('hidden')" class="w-8 h-8 rounded-lg flex items-center justify-center text-dar-dark/40 hover:text-dar-dark hover:bg-dar-dark/[0.06] transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <salla-search class="w-full"></salla-search>
     </div>
   </div>
-</header>
+</div>
+
+{# Spacer to prevent content from hiding behind fixed nav #}
+<div class="h-[72px]"></div>

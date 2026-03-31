@@ -3,50 +3,42 @@
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-  initStickyHeader();
-  initMobileMenu();
+  initFloatingNav();
+  initSearchOverlay();
 });
 
 /**
- * Sticky header with scroll-aware show/hide
+ * Floating navbar - adds shadow/border on scroll
  */
-function initStickyHeader() {
-  const header = document.querySelector('.dar-header');
-  if (!header) return;
-
-  let lastScroll = 0;
+function initFloatingNav() {
+  const wrapper = document.querySelector('.dar-header-wrapper');
+  if (!wrapper) return;
 
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-      header.classList.add('shadow-sm');
+    if (window.pageYOffset > 20) {
+      wrapper.classList.add('scrolled');
     } else {
-      header.classList.remove('shadow-sm');
+      wrapper.classList.remove('scrolled');
     }
-
-    lastScroll = currentScroll;
   }, { passive: true });
 }
 
 /**
- * Mobile menu toggle
+ * Search overlay - close on backdrop click or Escape
  */
-function initMobileMenu() {
-  const menuBtn = document.querySelector('[aria-label="Menu"]');
-  const mobileMenu = document.querySelector('.dar-mobile-menu');
-  if (!menuBtn || !mobileMenu) return;
+function initSearchOverlay() {
+  const overlay = document.getElementById('dar-search-overlay');
+  if (!overlay) return;
 
-  menuBtn.addEventListener('click', () => {
-    const isOpen = !mobileMenu.classList.contains('hidden');
-    mobileMenu.classList.toggle('hidden');
-    menuBtn.querySelector('i').className = isOpen ? 'sicon-menu text-xl text-dar-dark' : 'sicon-close text-xl text-dar-dark';
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+      overlay.classList.add('hidden');
+    }
   });
 }
-
-// Listen for Salla events
-salla.event.on('cart::item.added', () => {
-  salla.cart.event.onItemAdded((response) => {
-    // Cart item added feedback is handled by salla web components
-  });
-});
