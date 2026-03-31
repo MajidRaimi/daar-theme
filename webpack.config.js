@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const { TwilightWatcherPlugin } = require('@salla.sa/twilight/watcher');
+const TwilightWatcherPlugin = require('@salla.sa/twilight/watcher');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
