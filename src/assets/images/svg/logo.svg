@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="#404928"/>
+
+  <!-- Outer square frame -->
+  <rect x="80" y="80" width="352" height="352" fill="none" stroke="#F7F7F6" stroke-width="12"/>
+
+  <!-- Inner square frame -->
+  <rect x="110" y="110" width="292" height="292" fill="none" stroke="#F7F7F6" stroke-width="8"/>
+
+  <!-- Geometric pattern - rotated squares creating Islamic geometric motif -->
+  <!-- First rotated square -->
+  <rect x="130" y="130" width="252" height="252" fill="none" stroke="#F7F7F6" stroke-width="6" transform="rotate(15, 256, 256)"/>
+
+  <!-- Second rotated square -->
+  <rect x="145" y="145" width="222" height="222" fill="none" stroke="#F7F7F6" stroke-width="6" transform="rotate(30, 256, 256)"/>
+
+  <!-- Third rotated square -->
+  <rect x="160" y="160" width="192" height="192" fill="none" stroke="#F7F7F6" stroke-width="6" transform="rotate(45, 256, 256)"/>
+
+  <!-- Fourth rotated square -->
+  <rect x="175" y="175" width="162" height="162" fill="none" stroke="#F7F7F6" stroke-width="6" transform="rotate(60, 256, 256)"/>
+
+  <!-- Fifth rotated square -->
+  <rect x="190" y="190" width="132" height="132" fill="none" stroke="#F7F7F6" stroke-width="6" transform="rotate(75, 256, 256)"/>
+
+  <!-- Diagonal cross lines connecting the pattern -->
+  <line x1="80" y1="80" x2="432" y2="432" stroke="#F7F7F6" stroke-width="4" opacity="0.6"/>
+  <line x1="432" y1="80" x2="80" y2="432" stroke="#F7F7F6" stroke-width="4" opacity="0.6"/>
+
+  <!-- Horizontal and vertical center lines -->
+  <line x1="80" y1="256" x2="432" y2="256" stroke="#F7F7F6" stroke-width="4" opacity="0.4"/>
+  <line x1="256" y1="80" x2="256" y2="432" stroke="#F7F7F6" stroke-width="4" opacity="0.4"/>
+</svg>
